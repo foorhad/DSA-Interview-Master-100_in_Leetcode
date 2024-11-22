@@ -1,20 +1,23 @@
 //problem link : https://leetcode.com/problems/two-sum/
-//Time complesxity : o(n^2)
+//Time complesxity : o(nlogn)
 
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int>v;
-        long long ans = 0;
-        for(int i=0;i<nums.size()-1;i++){
-            for(int j=i+1;j<nums.size();j++){
-                if(nums[i]+nums[j]==target){
-                    v.push_back(i);
-                    v.push_back(j);
-                    break;
-                }
+        map<int,int>mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]] = i;
+        }
+        for(int i=0;i<nums.size();i++){
+            int x = target - nums[i];
+            if(mp[x]!=0  && i!=mp[x]){
+                v.push_back(i);
+                v.push_back(mp[x]);
+                break;
             }
         }
+
     return v;
     }
 };
